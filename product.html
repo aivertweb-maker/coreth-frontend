@@ -120,7 +120,8 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // Close quick view
-function closeQuickView() {
+// Close quick view
+window.closeQuickView = function() {
   const overlay = document.getElementById('quickviewOverlay');
   overlay.classList.add('closing');
   
