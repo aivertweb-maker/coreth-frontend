@@ -91,7 +91,34 @@
 
 </div>
 
-<script>
+
+
+  <script type="module">
+// Import Firebase
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyArU3nEb82JEI0wJceR73xUHxVtMJtVHOI",
+  authDomain: "coreth-clothing-c2ced.firebaseapp.com",
+  projectId: "coreth-clothing-c2ced",
+  storageBucket: "coreth-clothing-c2ced.appspot.com",
+  messagingSenderId: "601694130714",
+  appId: "1:601694130714:web:303d9325da7e07803177a3"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// Store current user
+let currentUser = null;
+
+// Check auth state
+onAuthStateChanged(auth, (user) => {
+  currentUser = user;
+});
+
 // Close quick view
 function closeQuickView() {
   const overlay = document.getElementById('quickviewOverlay');
@@ -117,13 +144,13 @@ document.getElementById('quickviewOverlay').addEventListener('click', function(e
 });
 
 // Select size
-function selectSize(option) {
+window.selectSize = function(option) {
   document.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
   option.classList.add('active');
 }
 
 // Update quantity
-function updateQuantity(change) {
+window.updateQuantity = function(change) {
   const qtyInput = document.getElementById('quantity');
   let currentQty = parseInt(qtyInput.value);
   let newQty = currentQty + change;
@@ -133,8 +160,15 @@ function updateQuantity(change) {
   }
 }
 
-// Add to cart
-async function addToCart() {
+// Add to cart - MODIFIED WITH AUTH CHECK
+window.addToCart = async function() {
+  // ✅ CHECK IF USER IS LOGGED IN
+  if (!currentUser) {
+    alert('Please login to add items to cart!');
+    window.location.href = 'login.html';
+    return;
+  }
+
   const productId = new URLSearchParams(window.location.search).get("id");
   const size = document.querySelector('.size-option.active').dataset.size;
   const quantity = parseInt(document.getElementById('quantity').value);
@@ -148,14 +182,14 @@ async function addToCart() {
       body: JSON.stringify({
         productId: productId,
         size: size,
-        quantity: quantity
+        quantity: quantity,
+        userId: currentUser.uid  // ✅ SEND USER ID
       })
     });
 
     const data = await response.json();
     
     if (response.ok) {
-      // Visual feedback
       const btn = document.querySelector('.add-to-cart-btn');
       const originalHTML = btn.innerHTML;
       btn.innerHTML = '<i class="fa-solid fa-check"></i><span>Added to Cart!</span>';
@@ -166,25 +200,24 @@ async function addToCart() {
         btn.classList.remove('added');
       }, 2000);
       
-      // Update cart badge (optional)
       updateCartBadge();
     } else {
       alert('Failed to add to cart: ' + data.message);
     }
   } catch (error) {
-    
     alert('Error adding to cart!');
   }
 }
 
 // Function to update cart badge count
 async function updateCartBadge() {
+  if (!currentUser) return;
+  
   try {
-    const response = await fetch('https://coreth-backend.onrender.com/api/cart');
+    const response = await fetch(`https://coreth-backend.onrender.com/api/cart?userId=${currentUser.uid}`);
     const cartItems = await response.json();
     const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     
-    // Update badge on main page if it exists
     const badge = document.querySelector('.cart-badge');
     if (badge) {
       badge.textContent = totalItems;
@@ -193,13 +226,13 @@ async function updateCartBadge() {
     console.error('Error updating cart badge:', error);
   }
 }
+
 // Page load animation
 window.addEventListener('load', () => {
   document.querySelector('.quickview-modal').classList.add('animate-in');
 });
 
-
-
+// Load product
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
@@ -214,21 +247,17 @@ fetch(`https://coreth-backend.onrender.com/api/products/${productId}`)
     return res.json();
   })
   .then(product => {
-    // basic info
     document.querySelector(".product-name").textContent = product.name;
     document.querySelector(".product-price").textContent = `₹${product.price}`;
     document.querySelector(".product-description p").textContent = product.description;
     document.querySelector(".info-value").textContent = product.color;
 
-    // image with same crop as shop page
-const imgDiv = document.getElementById('productImage');
-imgDiv.style.backgroundImage = `url('${product.image}')`;
-imgDiv.className = 'product-image-quickview ' + (product.imagePosition || 'img-center');
+    const imgDiv = document.getElementById('productImage');
+    imgDiv.style.backgroundImage = `url('${product.image}')`;
+    imgDiv.className = 'product-image-quickview ' + (product.imagePosition || 'img-center');
 
-    // stock → quantity limit
     document.getElementById("quantity").max = product.stock;
 
-    // sizes
     const sizeContainer = document.querySelector(".size-options");
     sizeContainer.innerHTML = "";
 
@@ -247,11 +276,4 @@ imgDiv.className = 'product-image-quickview ' + (product.imagePosition || 'img-c
     window.location.href = "index.html";
   });
 
-
-
 </script>
-
-
-
-</body>
-</html>
