@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quick View - Coreth Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="product.css">
+</head>
+<body>
+
+<!-- QUICK VIEW MODAL -->
+<div class="quickview-overlay" id="quickviewOverlay">
+  
+  <!-- Close Button -->
+  <button class="close-btn" onclick="closeQuickView()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <!-- Quick View Content -->
+  <div class="quickview-modal">
+    
+    <!-- Product Image -->
+<!-- Product Image -->
+<div class="product-image-quickview" id="productImage"></div>
+
+<!-- Product Details -->
+<div class="product-details">
+  
+  <h1 class="product-name"></h1>
+
+  <div class="product-rating">
+    <div class="stars">
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+    </div>
+    <span class="rating-text">Reviews Coming Soon</span>
+  </div>
+
+  <div class="product-price"></div>
+
+  <div class="product-description">
+    <p></p>
+  </div>
+
+  <div class="product-info-item">
+    <span class="info-label">Color:</span>
+    <span class="info-value"></span>
+  </div>
+
+
+      <!-- Size Selector -->
+      <div class="size-section">
+        <label class="section-label">Select Size</label>
+        <div class="size-options">
+          <div class="size-option" data-size="S" onclick="selectSize(this)">S</div>
+          <div class="size-option active" data-size="M" onclick="selectSize(this)">M</div>
+          <div class="size-option" data-size="L" onclick="selectSize(this)">L</div>
+          <div class="size-option" data-size="XL" onclick="selectSize(this)">XL</div>
+          <div class="size-option" data-size="XXL" onclick="selectSize(this)">XXL</div>
+        </div>
+      </div>
+
+      <!-- Quantity Selector -->
+      <div class="quantity-section">
+        <label class="section-label">Quantity</label>
+        <div class="quantity-selector">
+          <button class="qty-btn" onclick="updateQuantity(-1)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <input type="number" class="qty-input" id="quantity" value="1" min="1" max="10" readonly>
+          <button class="qty-btn" onclick="updateQuantity(1)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Add to Cart Button -->
+      <button class="add-to-cart-btn" onclick="addToCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Add to Cart</span>
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Close quick view
+function closeQuickView() {
+  const overlay = document.getElementById('quickviewOverlay');
+  overlay.classList.add('closing');
+  
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 300);
+}
+
+// Close on ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeQuickView();
+  }
+});
+
+// Close on overlay click
+document.getElementById('quickviewOverlay').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQuickView();
+  }
+});
+
+// Select size
+function selectSize(option) {
+  document.querySelectorAll('.size-option').forEach(o => o.classList.remove('active'));
+  option.classList.add('active');
+}
+
+// Update quantity
+function updateQuantity(change) {
+  const qtyInput = document.getElementById('quantity');
+  let currentQty = parseInt(qtyInput.value);
+  let newQty = currentQty + change;
+  
+  if (newQty >= 1 && newQty <= 10) {
+    qtyInput.value = newQty;
+  }
+}
+
+// Add to cart
+async function addToCart() {
+  const productId = new URLSearchParams(window.location.search).get("id");
+  const size = document.querySelector('.size-option.active').dataset.size;
+  const quantity = parseInt(document.getElementById('quantity').value);
+  
+  try {
+    const response = await fetch('https://coreth-backend.onrender.com/api/cart/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        productId: productId,
+        size: size,
+        quantity: quantity
+      })
+    });
+
+    const data = await response.json();
+    
+    if (response.ok) {
+      // Visual feedback
+      const btn = document.querySelector('.add-to-cart-btn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-check"></i><span>Added to Cart!</span>';
+      btn.classList.add('added');
+      
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.classList.remove('added');
+      }, 2000);
+      
+      // Update cart badge (optional)
+      updateCartBadge();
+    } else {
+      alert('Failed to add to cart: ' + data.message);
+    }
+  } catch (error) {
+    
+    alert('Error adding to cart!');
+  }
+}
+
+// Function to update cart badge count
+async function updateCartBadge() {
+  try {
+    const response = await fetch('https://coreth-backend.onrender.com/api/cart');
+    const cartItems = await response.json();
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Update badge on main page if it exists
+    const badge = document.querySelector('.cart-badge');
+    if (badge) {
+      badge.textContent = totalItems;
+    }
+  } catch (error) {
+    console.error('Error updating cart badge:', error);
+  }
+}
+// Page load animation
+window.addEventListener('load', () => {
+  document.querySelector('.quickview-modal').classList.add('animate-in');
+});
+
+
+
+const params = new URLSearchParams(window.location.search);
+const productId = params.get("id");
+
+if (!productId) {
+  alert("Product ID missing");
+  window.location.href = "index.html";
+}
+
+fetch(`https://coreth-backend.onrender.com/api/products/${productId}`)
+  .then(res => {
+    if (!res.ok) throw new Error("Product not found");
+    return res.json();
+  })
+  .then(product => {
+    // basic info
+    document.querySelector(".product-name").textContent = product.name;
+    document.querySelector(".product-price").textContent = `₹${product.price}`;
+    document.querySelector(".product-description p").textContent = product.description;
+    document.querySelector(".info-value").textContent = product.color;
+
+    // image with same crop as shop page
+const imgDiv = document.getElementById('productImage');
+imgDiv.style.backgroundImage = `url('${product.image}')`;
+imgDiv.className = 'product-image-quickview ' + (product.imagePosition || 'img-center');
+
+    // stock → quantity limit
+    document.getElementById("quantity").max = product.stock;
+
+    // sizes
+    const sizeContainer = document.querySelector(".size-options");
+    sizeContainer.innerHTML = "";
+
+    product.sizes.forEach((size, index) => {
+      const div = document.createElement("div");
+      div.className = "size-option" + (index === 0 ? " active" : "");
+      div.dataset.size = size;
+      div.textContent = size;
+      div.onclick = () => selectSize(div);
+      sizeContainer.appendChild(div);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+    alert("Failed to load product");
+    window.location.href = "index.html";
+  });
+
+
+
+</script>
+
+
+
+</body>
+</html>

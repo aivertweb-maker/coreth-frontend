@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopping Cart - Coreth Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="cart.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Coreth Clothing" class="logo-img">
+      </a>
+    </div>
+    
+    <div class="nav-icons">
+      <a href="profile.html" class="nav-icon" aria-label="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a href="cart.html" class="nav-icon active" aria-label="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge">3</span>
+      </a>
+      <a href="index.html" class="nav-icon" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- CART SECTION -->
+<section class="cart-section">
+  <div class="cart-container">
+    
+    <!-- Cart Header -->
+    <div class="cart-header">
+      <h1 class="cart-title">Shopping Cart</h1>
+      <p class="cart-subtitle"><span class="item-count">3</span> items in your cart</p>
+    </div>
+
+    <div class="cart-layout">
+      
+      <!-- Cart Items -->
+      <div class="cart-items">
+        
+
+        
+
+        <!-- Empty Cart Message (hidden by default) -->
+        <div class="empty-cart" style="display: none;">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <h3>Your cart is empty</h3>
+          <p>Add some items to get started!</p>
+          <a href="index.html" class="continue-shopping">Continue Shopping</a>
+        </div>
+
+      </div>
+
+      <!-- Cart Summary -->
+      <div class="cart-summary">
+        <h2 class="summary-title">Order Summary</h2>
+        
+        <div class="summary-details">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span class="subtotal">₹15,000</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span class="shipping">Free</span>
+          </div>
+          <div class="summary-row">
+            <span>Tax (18%)</span>
+            <span class="tax">₹2,700</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <span class="total">₹17,700</span>
+          </div>
+        </div>
+
+        <button class="checkout-btn" onclick="checkout()">
+          <i class="fa-solid fa-lock"></i>
+          <span>Proceed to Checkout</span>
+        </button>
+
+        <a href="index.html" class="continue-shopping-link">
+          <i class="fa-solid fa-arrow-left"></i>
+          Continue Shopping
+        </a>
+
+        <!-- Promo Code -->
+        <div class="promo-section">
+          <input type="text" placeholder="Enter promo code" class="promo-input">
+          <button class="apply-promo-btn">Apply</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Coreth Clothing. All Rights Reserved.</p>
+       <p>
+  
+  <a href="https://www.instagram.com/aivertweb"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="designer-link">
+     Designed by Anvita
+  </a>
+</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Load cart items from database when page loads
+async function loadCart() {
+  try {
+    const response = await fetch('http://localhost:5000/api/cart');
+    const cartItems = await response.json();
+    
+    if (cartItems.length === 0) {
+      showEmptyCart();
+      return;
+    }
+    
+    displayCartItems(cartItems);
+    updateCartSummary(cartItems);
+    
+  } catch (error) {
+    console.error('Error loading cart:', error);
+    alert('Failed to load cart items!');
+  }
+}
+
+// Display cart items on page
+function displayCartItems(items) {
+  const cartItemsContainer = document.querySelector('.cart-items');
+  
+  // Clear existing items (remove the hardcoded ones)
+  const existingItems = cartItemsContainer.querySelectorAll('.cart-item');
+  existingItems.forEach(item => item.remove());
+  
+  items.forEach((item, index) => {
+    const cartItemHTML = `
+      <div class="cart-item" data-id="${item._id}">
+        <div class="item-image">
+          <img src="${item.image}" alt="${item.name}">
+        </div>
+        <div class="item-details">
+          <h3 class="item-name">${item.name}</h3>
+          <p class="item-size">Size: <span>${item.size}</span></p>
+          <p class="item-color">Color: <span>${item.color || 'N/A'}</span></p>
+        </div>
+        <div class="item-quantity">
+          <button class="qty-btn minus" onclick="updateQuantity('${item._id}', -1)">
+            <i class="fa-solid fa-minus"></i>
+          </button>
+          <input type="number" value="${item.quantity}" min="1" class="qty-input" readonly>
+          <button class="qty-btn plus" onclick="updateQuantity('${item._id}', 1)">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="item-price">
+          <p class="price">₹${(item.price * item.quantity).toLocaleString('en-IN')}</p>
+        </div>
+        <button class="remove-btn" onclick="removeItem('${item._id}')">
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+    `;
+    
+    cartItemsContainer.insertAdjacentHTML('beforeend', cartItemHTML);
+    
+    // Add animation
+    setTimeout(() => {
+      const addedItem = cartItemsContainer.querySelector(`.cart-item[data-id="${item._id}"]`);
+      addedItem.classList.add('animate-in');
+    }, index * 100);
+  });
+  
+  // Animate summary
+  setTimeout(() => {
+    document.querySelector('.cart-summary').classList.add('animate-in');
+  }, items.length * 100);
+}
+
+// Update quantity in database
+async function updateQuantity(itemId, change) {
+  try {
+    const cartItem = document.querySelector(`.cart-item[data-id="${itemId}"]`);
+    const qtyInput = cartItem.querySelector('.qty-input');
+    let currentQty = parseInt(qtyInput.value);
+    let newQty = currentQty + change;
+    
+    if (newQty < 1) return; // Don't allow quantity less than 1
+    
+    // Update in database
+    const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ quantity: newQty })
+    });
+    
+    if (response.ok) {
+      // Reload cart to show updated values
+      loadCart();
+    } else {
+      alert('Failed to update quantity');
+    }
+    
+  } catch (error) {
+    console.error('Error updating quantity:', error);
+    alert('Error updating quantity!');
+  }
+}
+
+// Remove item from cart
+async function removeItem(itemId) {
+  if (!confirm('Remove this item from cart?')) return;
+  
+  try {
+    const response = await fetch(`http://localhost:5000/api/cart/${itemId}`, {
+      method: 'DELETE'
+    });
+    
+    if (response.ok) {
+      const cartItem = document.querySelector(`.cart-item[data-id="${itemId}"]`);
+      cartItem.style.animation = 'slideOut 0.4s ease forwards';
+      
+      setTimeout(() => {
+        loadCart(); // Reload entire cart
+      }, 400);
+    } else {
+      alert('Failed to remove item');
+    }
+    
+  } catch (error) {
+    console.error('Error removing item:', error);
+    alert('Error removing item!');
+  }
+}
+
+// Update cart summary (totals)
+function updateCartSummary(items) {
+  const subtotal = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  const tax = Math.round(subtotal * 0.18);
+  const total = subtotal + tax;
+  
+  document.querySelector('.subtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+  document.querySelector('.tax').textContent = `₹${tax.toLocaleString('en-IN')}`;
+  document.querySelector('.total').textContent = `₹${total.toLocaleString('en-IN')}`;
+  
+  // Update item count
+  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+  document.querySelector('.item-count').textContent = totalItems;
+  document.querySelector('.cart-badge').textContent = totalItems;
+}
+
+// Show empty cart message
+function showEmptyCart() {
+  const cartItemsContainer = document.querySelector('.cart-items');
+  const existingItems = cartItemsContainer.querySelectorAll('.cart-item');
+  existingItems.forEach(item => item.remove());
+  
+  document.querySelector('.empty-cart').style.display = 'flex';
+  document.querySelector('.cart-summary').style.display = 'none';
+  document.querySelector('.item-count').textContent = '0';
+  document.querySelector('.cart-badge').textContent = '0';
+}
+
+// Checkout
+function checkout() {
+  window.location.href = 'checkout.html';
+}
+
+// Apply promo code
+document.querySelector('.apply-promo-btn').addEventListener('click', function() {
+  const promoInput = document.querySelector('.promo-input');
+  const code = promoInput.value.trim();
+  
+  if (code) {
+    alert(`Promo code "${code}" applied! (Feature coming soon)`);
+    promoInput.value = '';
+  }
+});
+
+// Load cart when page loads
+window.addEventListener('load', () => {
+  loadCart();
+});
+</script>
+
+</body>
+</html>

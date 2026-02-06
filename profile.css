@@ -1,0 +1,457 @@
+/* ================= RESET & ROOT VARIABLES ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-black: #0a0a0a;
+  --secondary-black: #1a1a1a;
+  --accent-gold: #c9a96e;
+  --text-gray: #666666;
+  --light-gray: #f5f5f5;
+  --white: #ffffff;
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-black);
+  background: var(--light-gray);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.03);
+}
+
+.navbar.scroll-down {
+  transform: translateY(-100%);
+}
+
+.navbar.scroll-up {
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 80px;
+  padding: 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-img {
+  height: 250px;
+  width: auto;
+  transition: var(--transition);
+}
+
+
+/* ================= NAVBAR ================= */
+
+.logo-img:hover {
+  transform: scale(1.05);
+}
+
+.nav-icons {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-icon {
+  position: relative;
+  color: var(--primary-black);
+  font-size: 20px;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.nav-icon:hover,
+.nav-icon.active {
+  color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--accent-gold);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ================= PROFILE SECTION ================= */
+.profile-section {
+  flex: 1;
+  padding: 140px 40px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 600px;
+}
+
+.profile-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 10px 60px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.profile-card.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Profile Header */
+.profile-header {
+  text-align: center;
+  padding: 50px 40px 40px;
+  background: linear-gradient(135deg, var(--primary-black) 0%, var(--secondary-black) 100%);
+  color: var(--white);
+}
+
+.profile-picture-wrapper {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 50px;
+  color: var(--white);
+  border: 5px solid var(--white);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  transition: var(--transition);
+}
+
+.profile-picture:hover {
+  transform: scale(1.05);
+}
+
+.edit-picture-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  color: var(--white);
+  border: 3px solid var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.edit-picture-btn:hover {
+  background: #b89558;
+  transform: scale(1.1);
+}
+
+.profile-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.profile-subtitle {
+  font-size: 14px;
+  font-weight: 300;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+}
+
+/* Profile Form */
+.profile-form {
+  padding: 40px;
+}
+
+.form-group {
+  margin-bottom: 30px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-black);
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+}
+
+.form-group label i {
+  color: var(--accent-gold);
+  font-size: 16px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: 'Inter', sans-serif;
+  transition: var(--transition);
+  background: var(--white);
+  color: var(--primary-black);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 0 4px rgba(201, 169, 110, 0.1);
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+/* Password Field */
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 50px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-gray);
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--transition);
+  padding: 5px;
+}
+
+.toggle-password:hover {
+  color: var(--accent-gold);
+}
+
+/* Action Buttons */
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+.save-btn,
+.logout-btn {
+  flex: 1;
+  padding: 16px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.save-btn {
+  background: var(--accent-gold);
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+}
+
+.save-btn:hover {
+  background: #b89558;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(201, 169, 110, 0.4);
+}
+
+.save-btn.saved {
+  background: #4caf50;
+  animation: pulse 0.6s ease;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.logout-btn {
+  background: transparent;
+  color: var(--primary-black);
+  border: 2px solid #e0e0e0;
+}
+
+.logout-btn:hover {
+  background: #ff4444;
+  color: var(--white);
+  border-color: #ff4444;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 68, 68, 0.3);
+}
+
+/* ================= FOOTER ================= */
+.footer {
+  background: var(--primary-black);
+  color: var(--white);
+  padding: 30px 0;
+  margin-top: auto;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.footer-bottom {
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 5px 0;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 15px 30px;
+  }
+
+  .profile-section {
+    padding: 120px 20px 60px;
+  }
+
+  .profile-header {
+    padding: 40px 30px 30px;
+  }
+
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+  }
+
+  .profile-title {
+    font-size: 26px;
+  }
+
+  .profile-form {
+    padding: 30px 25px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .save-btn,
+  .logout-btn {
+    width: 100%;
+  }
+
+  .footer-container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    border-radius: 15px;
+  }
+
+  .profile-title {
+    font-size: 22px;
+  }
+
+  .profile-subtitle {
+    font-size: 13px;
+  }
+
+  .form-group input {
+    padding: 13px 18px;
+    font-size: 14px;
+  }
+}
+
+/* Hide page until auth check is done */
+body.checking-auth {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.auth-ready {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+.designer-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.designer-link:hover {
+  text-decoration: underline;
+  color: var(--accent-gold); /* or any accent color you use */
+}

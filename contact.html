@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us - Coreth Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Coreth Clothing" class="logo-img">
+      </a>
+    </div>
+    
+    <div class="nav-icons">
+      <a href="profile.html" class="nav-icon" aria-label="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a href="cart.html" class="nav-icon" aria-label="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge">0</span>
+      </a>
+      <a href="index.html" class="nav-icon" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- CONTACT SECTION -->
+<section class="contact-section">
+  <div class="contact-container">
+    
+    <!-- Header -->
+    <div class="contact-header">
+      <div class="icon-wrapper">
+        <i class="fa-solid fa-message"></i>
+      </div>
+      <h1 class="contact-title">Get In Touch</h1>
+      <p class="contact-subtitle">We'd love to hear from you! Reach out and we'll respond within 24 hours.</p>
+    </div>
+
+    <div class="contact-layout">
+      
+      <!-- Contact Form -->
+      <div class="form-section">
+        <h2 class="section-title">Send us a Message</h2>
+        <form class="contact-form" id="contactForm">
+          
+          <div class="form-group">
+            <label for="name">
+              <i class="fa-solid fa-user"></i>
+              Your Name
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              placeholder="Enter your full name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="email">
+              <i class="fa-solid fa-envelope"></i>
+              Email Address
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              placeholder="your.email@example.com"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="phone">
+              <i class="fa-solid fa-phone"></i>
+              Phone Number (Optional)
+            </label>
+            <input 
+              type="tel" 
+              id="phone" 
+              placeholder="+91 XXXXX XXXXX"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="subject">
+              <i class="fa-solid fa-tag"></i>
+              Subject
+            </label>
+            <select id="subject" required>
+              <option value="">Select a subject</option>
+              <option value="order">Order Inquiry</option>
+              <option value="shipping">Shipping & Delivery</option>
+              <option value="return">Returns & Refunds</option>
+              <option value="product">Product Information</option>
+              <option value="complaint">Complaint</option>
+              <option value="feedback">Feedback</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">
+              <i class="fa-solid fa-comment"></i>
+              Your Message
+            </label>
+            <textarea 
+              id="message" 
+              rows="6" 
+              placeholder="Tell us how we can help you..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>Send Message</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="info-section">
+        <h2 class="section-title">Contact Information</h2>
+        
+        <div class="info-cards">
+          
+          <!-- Email Card -->
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="info-content">
+              <h3>Email Us</h3>
+              <a href="mailto:corethclothing@gmail.com">corethclothing@gmail.com</a>
+              <p>We'll respond within 24 hours</p>
+            </div>
+          </div>
+
+          <!-- Location Card -->
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div class="info-content">
+              <h3>Location</h3>
+              <p class="location">Maharashtra, India</p>
+              <p>Serving customers pan-India</p>
+            </div>
+          </div>
+
+          <!-- Response Time Card -->
+          <div class="info-card highlight">
+            <div class="info-icon">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div class="info-content">
+              <h3>Response Time</h3>
+              <p class="response-time">Within 24 Hours</p>
+              <p>We're here to help you quickly</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-section">
+          <h3>Follow Us</h3>
+          <div class="social-links">
+            <a href="#" class="social-link instagram">
+              <i class="fa-brands fa-instagram"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="social-link facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="social-link twitter">
+              <i class="fa-brands fa-twitter"></i>
+              <span>Twitter</span>
+            </a>
+            <a href="#" class="social-link pinterest">
+              <i class="fa-brands fa-pinterest"></i>
+              <span>Pinterest</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="quick-links-section">
+          <h3>Quick Links</h3>
+          <div class="quick-links">
+            <a href="shipping.html">
+              <i class="fa-solid fa-truck"></i>
+              Shipping Policy
+            </a>
+            <a href="refund.html">
+              <i class="fa-solid fa-rotate-left"></i>
+              Return & Refund
+            </a>
+            <a href="privacy.html">
+              <i class="fa-solid fa-shield-halved"></i>
+              Privacy Policy
+            </a>
+            <a href="terms.html">
+              <i class="fa-solid fa-file-contract"></i>
+              Terms & Conditions
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="story.html">Our Story</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms & Conditions</a>
+      <a href="shipping.html">Shipping Policy</a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Coreth Clothing. All Rights Reserved.</p>
+       <p>
+  
+  <a href="https://www.instagram.com/aivertweb"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="designer-link">
+     Designed by Anvita
+  </a>
+</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Form submission
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const phone = document.getElementById('phone').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  
+  // Add your form submission logic here (e.g., send to backend, email service)
+  console.log('Form submitted:', { name, email, phone, subject, message });
+  
+  // Success feedback
+  alert('Thank you for contacting us! We will respond within 24 hours.');
+  this.reset();
+});
+
+// Page load animation
+window.addEventListener('load', () => {
+  document.querySelector('.form-section').classList.add('animate-in');
+  
+  setTimeout(() => {
+    document.querySelector('.info-section').classList.add('animate-in');
+  }, 200);
+});
+</script>
+
+</body>
+</html>

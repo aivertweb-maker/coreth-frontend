@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coreth Clothing - Everyday Fashion, Elevated</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <img src="logo.png" alt="Coreth Clothing" class="logo-img">
+    </div>
+    
+    <div class="nav-icons">
+      <a href="login.html" class="nav-icon" aria-label="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a href="cart.html" class="nav-icon cart-icon" aria-label="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge">0</span>
+      </a>
+      <a href="menu.html"class="nav-icon menu-toggle" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+  <div class="hero-overlay"></div>
+  <div class="hero-background">
+    <div class="hero-img"></div>
+  </div>
+  
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1 class="hero-title">
+        <span class="title-line">Everyday Fashion,</span>
+        <span class="title-line">Elevated</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="subtitle-line">Designed for comfort.</span>
+        <span class="subtitle-line">Styled for confidence.</span>
+      </p>
+      <button class="cta-button" onclick="scrollToShop()">
+        <span>Shop Collection</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">
+    <div class="mouse">
+      <div class="wheel"></div>
+    </div>
+    <p>Scroll to explore</p>
+  </div>
+</section>
+
+<!-- SHOP SECTION -->
+<section class="shop" id="shop">
+  <div class="shop-container">
+    
+    <!-- Section Header -->
+    <div class="section-header">
+      <span class="section-label">Our Collection</span>
+      <h2 class="section-title">Featured Products</h2>
+      <p class="section-subtitle">Crafted with care, designed for you</p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid">
+      
+      <!-- Product 1 -->
+      <div class="product-card" data-product="1">
+        <div class="product-image-wrapper">
+          <div class="product-image" style="background-image: url('generated-image(52).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f592c68dca0b817dcf6c5')">Quick View</button>
+            </div>
+          </div>
+          <div class="product-badge">New</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Zip Through Hoodie</h3>
+          <p class="product-price">₹3,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 2 -->
+      <div class="product-card" data-product="2">
+        <div class="product-image-wrapper">
+          <div class="product-image img-right" style="background-image: url('generated-image(24)-Photoroom.png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f596068dca0b817dcf6c7')">Quick View</button>
+            </div>
+          </div>
+          <div class="product-badge">Bestseller</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Hoodie for Women</h3>
+          <p class="product-price">₹4,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 3 -->
+      <div class="product-card" data-product="3">
+        <div class="product-image-wrapper">
+          <div class="product-image" style="background-image: url('generated-image(26)-Photoroom(1)-Photoroom.png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f59f768dca0b817dcf6c9')">Quick View</button>
+            </div>
+          </div>
+          <div class="product-badge">New</div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Beige Hoodie for Women</h3>
+          <p class="product-price">₹4,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 4 -->
+      <div class="product-card" data-product="4">
+        <div class="product-image-wrapper">
+          <div class="product-image" style="background-image: url('generated-image(55).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5a3a68dca0b817dcf6cb')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Winter Jacket</h3>
+          <p class="product-price">₹4,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 5 -->
+      <div class="product-card" data-product="5">
+        <div class="product-image-wrapper">
+          <div class="product-image img-bottom" style="background-image: url('generated-image(48).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5a6068dca0b817dcf6cd')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Blue Baggy Denim Jeans</h3>
+          <p class="product-price">₹4,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 6 -->
+      <div class="product-card" data-product="6">
+        <div class="product-image-wrapper">
+          <div class="product-image img-bottom" style="background-image: url('generated-image(50).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5a8968dca0b817dcf6cf')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Baggy Jeans</h3>
+          <p class="product-price">₹4,000</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 7 -->
+      <div class="product-card" data-product="7">
+        <div class="product-image-wrapper">
+          <div class="product-image" style="background-image: url('generated-image(58).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5ab268dca0b817dcf6d1')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Pink Turtle Neck Top</h3>
+          <p class="product-price">₹2,500</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 8 -->
+      <div class="product-card" data-product="8">
+        <div class="product-image-wrapper">
+          <div class="product-image" style="background-image: url('generated-image(53).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5ad368dca0b817dcf6d3')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Turtle Neck Top</h3>
+          <p class="product-price">₹2,500</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Product 9 -->
+      <div class="product-card" data-product="9">
+        <div class="product-image-wrapper">
+          <div class="product-image img-top" style="background-image: url('generated-image(50).png');">
+            <div class="product-overlay">
+              <button class="quick-view-btn" onclick="openProduct('697f5c2547d8d78255d5ad0b')">Quick View</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-info">
+          <h3 class="product-name">Black Plain T-Shirt</h3>
+          <p class="product-price">₹1,500</p>
+          <button class="add-to-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Add to Cart</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coming Soon Section -->
+    <div class="coming-soon">
+      <h3>New Collection Coming Soon</h3>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    
+    <!-- Footer Top -->
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3 class="footer-logo">CORETH</h3>
+        <p class="footer-tagline">Everyday fashion, elevated.</p>
+        <div class="social-links">
+          <a href="https://www.instagram.com/corethclothing"
+   class="social-icon"
+   target="_blank"
+   rel="noopener noreferrer">
+  <i class="fa-brands fa-instagram"></i>
+</a>
+
+          <a href="#" class="social-icon"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-icon"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-links-group">
+        <div class="footer-column">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="#shop">All Products</a></li>
+            <li><a href="#shop">Hoodies & Jackets</a></li>
+            <li><a href="#shop">New Arrivals</a></li>
+            <li><a href="#shop">Best Sellers</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>Help</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="shipping.html">Shipping Policy</a></li>
+            <li><a href="refund.html">Returns & Refunds</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h4>About</h4>
+          <ul>
+            <li><a href="story.html">Our Story</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="#careers">Careers</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 Coreth Clothing. All Rights Reserved.</p>
+      <p>
+  
+  <a href="https://www.instagram.com/aivertweb"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="designer-link">
+     Designed by Anvita
+  </a>
+</p>
+
+    </div>
+
+  </div>
+</footer>
+<script src="js/loadProducts.js"></script>
+
+
+<!-- JavaScript -->
+<script>
+
+
+// Smooth scroll to shop section
+function scrollToShop() {
+  document.getElementById('shop').scrollIntoView({ 
+    behavior: 'smooth',
+    block: 'start'
+  });
+}
+
+// Navbar scroll effect
+let lastScroll = 0;
+const navbar = document.getElementById('navbar');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll <= 0) {
+    navbar.classList.remove('scroll-up', 'scroll-down');
+  } else if (currentScroll > lastScroll) {
+    navbar.classList.remove('scroll-up');
+    navbar.classList.add('scroll-down');
+  } else {
+    navbar.classList.remove('scroll-down');
+    navbar.classList.add('scroll-up');
+  }
+
+  lastScroll = currentScroll;
+});
+
+// Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('animate-in');
+    }
+  });
+}, {
+  threshold: 0.1,
+  rootMargin: '0px 0px -100px 0px'
+});
+
+// Observe cards
+document.querySelectorAll('.product-card').forEach(card => {
+  observer.observe(card);
+});
+
+// Observe header
+const sectionHeader = document.querySelector('.section-header');
+if (sectionHeader) observer.observe(sectionHeader);
+
+// Add to cart animation
+document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    btn.classList.add('added');
+    const span = btn.querySelector('span');
+    const text = span.textContent;
+    span.textContent = 'Added!';
+
+    setTimeout(() => {
+      btn.classList.remove('added');
+      span.textContent = text;
+    }, 2000);
+  });
+});
+
+// Hero animation
+window.addEventListener('load', () => {
+  document.querySelectorAll('.title-line').forEach((line, i) => {
+    setTimeout(() => line.classList.add('animate'), i * 200);
+  });
+
+  document.querySelectorAll('.subtitle-line').forEach((line, i) => {
+    setTimeout(() => line.classList.add('animate'), 400 + i * 150);
+  });
+});
+
+// Quick view click
+document.querySelectorAll('.quick-view-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const card = btn.closest('.product-card');
+    const name = card.querySelector('.product-name').textContent;
+    console.log('Quick view:', name);
+  });
+});
+
+// Open product page
+function openProduct(productId) {
+  window.location.href = `product.html?id=${productId}`;
+}
+
+// Update cart badge with real count from database
+async function updateCartBadge() {
+  try {
+    const response = await fetch('https://coreth-backend.onrender.com/api/cart');
+    const cartItems = await response.json();
+    
+    // Calculate total quantity
+    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Update badge
+    const badge = document.querySelector('.cart-badge');
+    if (badge) {
+      badge.textContent = totalItems;
+    }
+  } catch (error) {
+    console.error('Error updating cart badge:', error);
+  }
+}
+
+// Call updateCartBadge when page loads
+window.addEventListener('load', () => {
+  updateCartBadge(); // Load real cart count
+  
+  // Your existing animations
+  document.querySelectorAll('.title-line').forEach((line, i) => {
+    setTimeout(() => line.classList.add('animate'), i * 200);
+  });
+
+  document.querySelectorAll('.subtitle-line').forEach((line, i) => {
+    setTimeout(() => line.classList.add('animate'), 400 + i * 150);
+  });
+});
+</script>

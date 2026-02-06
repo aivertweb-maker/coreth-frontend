@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu - Coreth Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+<!-- OVERLAY MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  
+  <!-- Close Button -->
+  <button class="close-btn" onclick="closeMenu()">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+
+  <!-- Menu Content -->
+  <div class="menu-content">
+    
+    <!-- Brand Logo -->
+    <div class="menu-brand">
+      <h1>CORETH</h1>
+      <p>Everyday fashion, elevated.</p>
+    </div>
+
+    <!-- Navigation Links -->
+    <nav class="menu-nav">
+      <a href="index.html#home" class="menu-link" data-index="1">
+        <span class="link-number">01</span>
+        <span class="link-text">Home</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+      <a href="index.html#shop" class="menu-link" data-index="2">
+        <span class="link-number">02</span>
+        <span class="link-text">Shop</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+      <a href="story.html" class="menu-link" data-index="3">
+        <span class="link-number">03</span>
+        <span class="link-text">About Us</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+
+      <a href="contact.html" class="menu-link" data-index="4">
+        <span class="link-number">04</span>
+        <span class="link-text">Contact</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
+    </nav>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="profile.html" class="quick-link">
+        <i class="fa-solid fa-user"></i>
+        <span>My Profile</span>
+      </a>
+      <a href="cart.html" class="quick-link">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Shopping Cart</span>
+      </a>
+      <a href="login.html" class="quick-link">
+        <i class="fa-solid fa-right-to-bracket"></i>
+        <span>Login / Sign Up</span>
+      </a>
+    </div>
+
+    <!-- Social Links -->
+    <div class="social-links">
+      <a href="https://www.instagram.com/aivertweb" class="social-icon" aria-label="Instagram">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      <a href="#" class="social-icon" aria-label="Facebook">
+        <i class="fa-brands fa-facebook-f"></i>
+      </a>
+      <a href="#" class="social-icon" aria-label="Twitter">
+        <i class="fa-brands fa-twitter"></i>
+      </a>
+      <a href="#" class="social-icon" aria-label="Pinterest">
+        <i class="fa-brands fa-pinterest"></i>
+      </a>
+    </div>
+
+    <!-- Footer Info -->
+    <div class="menu-footer">
+      <p>&copy; 2026 Coreth Clothing. All Rights Reserved.</p>
+       <p>
+  
+  <a href="https://www.instagram.com/aivertweb"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="designer-link">
+     Designed by Anvita
+  </a>
+</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Close menu function
+function closeMenu() {
+  const overlay = document.getElementById('menuOverlay');
+  overlay.classList.add('closing');
+  
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 600);
+}
+
+// Close menu on ESC key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeMenu();
+  }
+});
+
+
+window.addEventListener('load', () => {
+  const menuLinks = document.querySelectorAll('.menu-link');
+  const quickLinks = document.querySelectorAll('.quick-link');
+  const socialIcons = document.querySelectorAll('.social-icon');
+  
+  
+  menuLinks.forEach((link, index) => {
+    setTimeout(() => {
+      link.classList.add('animate-in');
+    }, 100 + (index * 100));
+  });
+  
+  
+  setTimeout(() => {
+    quickLinks.forEach((link, index) => {
+      setTimeout(() => {
+        link.classList.add('animate-in');
+      }, index * 80);
+    });
+  }, 500);
+  
+  
+  setTimeout(() => {
+    socialIcons.forEach((icon, index) => {
+      setTimeout(() => {
+        icon.classList.add('animate-in');
+      }, index * 60);
+    });
+  }, 700);
+});
+
+
+document.querySelectorAll('.menu-link').forEach(link => {
+  link.addEventListener('mouseenter', function() {
+    this.style.transform = 'translateX(20px)';
+  });
+  
+  link.addEventListener('mouseleave', function() {
+    this.style.transform = 'translateX(0)';
+  });
+});
+</script>
+
+</body>
+</html>

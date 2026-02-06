@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile - Coreth Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <a href="index.html">
+        <img src="logo.png" alt="Coreth Clothing" class="logo-img">
+      </a>
+    </div>
+    
+    <div class="nav-icons">
+      <a href="profile.html" class="nav-icon active" aria-label="Profile">
+        <i class="fa-solid fa-user"></i>
+      </a>
+      <a href="cart.html" class="nav-icon" aria-label="Cart">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge">0</span>
+      </a>
+      <a href="index.html" class="nav-icon" aria-label="Home">
+        <i class="fa-solid fa-house"></i>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- PROFILE SECTION -->
+<section class="profile-section">
+  <div class="profile-container">
+    
+    <!-- Profile Card -->
+    <div class="profile-card">
+      
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="profile-picture-wrapper">
+          <div class="profile-picture">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <button class="edit-picture-btn">
+            <i class="fa-solid fa-camera"></i>
+          </button>
+        </div>
+        <h1 class="profile-title">My Profile</h1>
+        <p class="profile-subtitle">Manage your account information</p>
+      </div>
+
+      <!-- Profile Form -->
+      <div class="profile-form">
+        
+        <!-- Name Field -->
+        <div class="form-group">
+          <label for="name">
+            <i class="fa-solid fa-user"></i>
+            Name
+          </label>
+          <input 
+            type="text" 
+            id="name" 
+            placeholder="Enter your name"
+            value="John Doe"
+          >
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email">
+            <i class="fa-solid fa-envelope"></i>
+            Email
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            placeholder="Enter your email"
+            value="johndoe@gmail.com"
+          >
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password">
+            <i class="fa-solid fa-lock"></i>
+            Password
+          </label>
+          <div class="password-wrapper">
+            <input 
+              type="password" 
+              id="password" 
+              placeholder="••••••••"
+              value="password123"
+            >
+            <button class="toggle-password" onclick="togglePassword()">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button class="save-btn">
+            <i class="fa-solid fa-check"></i>
+            Save Changes
+          </button>
+          <button class="logout-btn" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Log Out
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Coreth Clothing. All Rights Reserved.</p>
+      <p>
+  
+  <a href="https://www.instagram.com/aivertweb"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="designer-link">
+     Designed by Anvita
+  </a>
+</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Toggle password visibility
+function togglePassword() {
+  const passwordInput = document.getElementById('password');
+  const toggleBtn = document.querySelector('.toggle-password i');
+  
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    toggleBtn.classList.remove('fa-eye');
+    toggleBtn.classList.add('fa-eye-slash');
+  } else {
+    passwordInput.type = 'password';
+    toggleBtn.classList.remove('fa-eye-slash');
+    toggleBtn.classList.add('fa-eye');
+  }
+}
+
+// Logout function
+// Logout function
+async function logout() {
+  if (confirm('Are you sure you want to log out?')) {
+    try {
+      await window.firebaseSignOut();
+      alert('Logged out successfully!');
+      window.location.href = 'login.html';
+    } catch (error) {
+      alert('Logout failed: ' + error.message);
+    }
+  }
+}
+
+// Save changes
+document.querySelector('.save-btn').addEventListener('click', function() {
+  // Add animation
+  this.classList.add('saved');
+  const originalText = this.innerHTML;
+  this.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+  
+  setTimeout(() => {
+    this.classList.remove('saved');
+    this.innerHTML = originalText;
+  }, 2000);
+  
+  // Add your save logic here
+  console.log('Profile updated');
+});
+
+// Edit picture placeholder
+document.querySelector('.edit-picture-btn').addEventListener('click', function() {
+  alert('Profile picture upload feature - Coming soon!');
+});
+
+// Page load animation
+window.addEventListener('load', () => {
+  document.querySelector('.profile-card').classList.add('animate-in');
+});
+</script>
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+  import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyArU3nEb82JEI0wJceR73xUHxVtMJtVHOI",
+    authDomain: "coreth-clothing-c2ced.firebaseapp.com",
+    projectId: "coreth-clothing-c2ced",
+    storageBucket: "coreth-clothing-c2ced.firebasestorage.app",
+    messagingSenderId: "601694130714",
+    appId: "1:601694130714:web:303d9325da7e07803177a3"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Immediate redirect if not logged in
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // Not logged in - redirect IMMEDIATELY
+      window.location.replace('login.html');
+      return;
+    }
+    
+    // User is logged in - populate fields
+    document.getElementById('email').value = user.email;
+    const userName = localStorage.getItem('userName') || user.displayName || 'User';
+    document.getElementById('name').value = userName;
+  });
+
+  // Make signOut global
+  window.firebaseSignOut = () => signOut(auth);
+</script>
+</body>
+</html>

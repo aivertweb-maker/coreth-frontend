@@ -1,0 +1,83 @@
+/* Use the same CSS as refund.css with additional styles */
+@import url('refund.css');
+
+/* Additional styles for Terms page */
+
+.coverage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.coverage-item {
+  display: flex;
+  gap: 12px;
+  padding: 15px;
+  background: var(--light-gray);
+  border-radius: 10px;
+  align-items: flex-start;
+}
+
+.coverage-item i {
+  font-size: 24px;
+  color: var(--accent-gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.coverage-item strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-black);
+  margin-bottom: 3px;
+}
+
+.coverage-item span {
+  display: block;
+  font-size: 13px;
+  color: var(--text-gray);
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.payment-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 15px;
+  background: var(--light-gray);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--primary-black);
+}
+
+.payment-item i {
+  font-size: 20px;
+  color: var(--accent-gold);
+}
+
+@media (max-width: 768px) {
+  .coverage-grid,
+  .payment-methods {
+    grid-template-columns: 1fr;
+  }
+}
+
+.designer-link {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.designer-link:hover {
+  text-decoration: underline;
+  color: var(--accent-gold); /* or any accent color you use */
+}
