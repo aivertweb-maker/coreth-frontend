@@ -556,42 +556,11 @@ body {
   margin-bottom: 20px;
 }
 
-.add-to-cart-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 28px;
-  background: var(--primary-black);
-  color: var(--white);
-  border: 2px solid var(--primary-black);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: var(--transition);
-}
 
-.add-to-cart-btn:hover {
-  background: transparent;
-  color: var(--primary-black);
-  transform: translateY(-2px);
-}
 
-.add-to-cart-btn.added {
-  background: var(--accent-gold);
-  border-color: var(--accent-gold);
-  animation: pulse 0.6s ease;
-}
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-}
+
+
 
 /* ================= COMING SOON ================= */
 .coming-soon {
@@ -860,15 +829,7 @@ body {
     margin-bottom: 8px;
   }
   
-  .add-to-cart-btn {
-    padding: 6px 10px;
-    font-size: 9px;
-    gap: 4px;
-  }
-  
-  .add-to-cart-btn i {
-    font-size: 9px;
-  }
+ 
   
   .product-badge {
     font-size: 7px;

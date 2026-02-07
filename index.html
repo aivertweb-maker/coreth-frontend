@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Coreth Clothing - Everyday Fashion, Elevated</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -91,10 +93,7 @@
         <div class="product-info">
           <h3 class="product-name">Zip Through Hoodie</h3>
           <p class="product-price">₹3,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -111,10 +110,6 @@
         <div class="product-info">
           <h3 class="product-name">Hoodie for Women</h3>
           <p class="product-price">₹4,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
         </div>
       </div>
 
@@ -131,10 +126,7 @@
         <div class="product-info">
           <h3 class="product-name">Beige Hoodie for Women</h3>
           <p class="product-price">₹4,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+         
         </div>
       </div>
 
@@ -150,10 +142,7 @@
         <div class="product-info">
           <h3 class="product-name">Winter Jacket</h3>
           <p class="product-price">₹4,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -169,10 +158,7 @@
         <div class="product-info">
           <h3 class="product-name">Blue Baggy Denim Jeans</h3>
           <p class="product-price">₹4,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -188,10 +174,7 @@
         <div class="product-info">
           <h3 class="product-name">Black Baggy Jeans</h3>
           <p class="product-price">₹4,000</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -207,10 +190,7 @@
         <div class="product-info">
           <h3 class="product-name">Pink Turtle Neck Top</h3>
           <p class="product-price">₹2,500</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -226,10 +206,7 @@
         <div class="product-info">
           <h3 class="product-name">Black Turtle Neck Top</h3>
           <p class="product-price">₹2,500</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -245,10 +222,7 @@
         <div class="product-info">
           <h3 class="product-name">Black Plain T-Shirt</h3>
           <p class="product-price">₹1,500</p>
-          <button class="add-to-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Add to Cart</span>
-          </button>
+          
         </div>
       </div>
 
@@ -391,21 +365,7 @@ document.querySelectorAll('.product-card').forEach(card => {
 const sectionHeader = document.querySelector('.section-header');
 if (sectionHeader) observer.observe(sectionHeader);
 
-// Add to cart animation
-document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    btn.classList.add('added');
-    const span = btn.querySelector('span');
-    const text = span.textContent;
-    span.textContent = 'Added!';
 
-    setTimeout(() => {
-      btn.classList.remove('added');
-      span.textContent = text;
-    }, 2000);
-  });
-});
 
 // Hero animation
 window.addEventListener('load', () => {
