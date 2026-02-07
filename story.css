@@ -554,3 +554,28 @@ body {
   color: rgba(255, 255, 255, 0.5);
   margin: 5px 0;
 }
+@media (max-width: 768px) {}
+  
+  /* NAVBAR */
+  .nav-container {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .logo-img {
+    height: 140px;
+  }
+  
+  .nav-icons {
+    gap: 20px;
+  }
+  
+  .nav-icon {
+    font-size: 18px;
+  }
+  
+  .cart-badge {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+  }

@@ -455,3 +455,64 @@ body.auth-ready {
   text-decoration: underline;
   color: var(--accent-gold); /* or any accent color you use */
 }
+@media (max-width: 768px) {}
+  
+  /* NAVBAR */
+  .nav-container {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .logo-img {
+    height: 140px;
+  }
+  
+  .nav-icons {
+    gap: 20px;
+  }
+  
+  .nav-icon {
+    font-size: 18px;
+  }
+  
+  .cart-badge {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Fix for mobile touch events */
+.logout-btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
+
+/* Ensure button is clickable on mobile */
+@media (max-width: 768px) {
+  .logout-btn {
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+/* Mobile logout button fix */
+.logout-btn {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .logout-btn {
+    cursor: pointer !important;
+  }
+}

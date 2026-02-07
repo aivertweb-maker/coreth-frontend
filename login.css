@@ -403,25 +403,7 @@ body {
   font-size: 18px;
 }
 
-.social-btn.google {
-  color: #db4437;
-}
 
-.social-btn.google:hover {
-  background: #db4437;
-  color: var(--white);
-  border-color: #db4437;
-}
-
-.social-btn.facebook {
-  color: #4267B2;
-}
-
-.social-btn.facebook:hover {
-  background: #4267B2;
-  color: var(--white);
-  border-color: #4267B2;
-}
 
 .social-btn:hover {
   transform: translateY(-2px);
@@ -538,3 +520,28 @@ body {
   text-decoration: underline;
   color: var(--accent-gold); /* or any accent color you use */
 }
+@media (max-width: 768px) {}
+  
+  /* NAVBAR */
+  .nav-container {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .logo-img {
+    height: 140px;
+  }
+  
+  .nav-icons {
+    gap: 20px;
+  }
+  
+  .nav-icon {
+    font-size: 18px;
+  }
+  
+  .cart-badge {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+  }

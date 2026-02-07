@@ -98,22 +98,14 @@
           <i class="fa-solid fa-right-to-bracket"></i>
           <span>Login</span>
         </button>
-
         <div class="divider">
-          <span>or continue with</span>
+          <span></span>
         </div>
 
-        <div class="social-login">
-          <button type="button" class="social-btn google">
-            <i class="fa-brands fa-google"></i>
-            <span>Google</span>
-          </button>
-          <button type="button" class="social-btn facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-            <span>Facebook</span>
-          </button>
+        
         </div>
       </form>
+
 
       <!-- Signup Form -->
       <form class="auth-form hidden" id="signupForm">
@@ -195,18 +187,10 @@
         </button>
 
         <div class="divider">
-          <span>or continue with</span>
+          <span></span>
         </div>
 
-        <div class="social-login">
-          <button type="button" class="social-btn google">
-            <i class="fa-brands fa-google"></i>
-            <span>Google</span>
-          </button>
-          <button type="button" class="social-btn facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-            <span>Facebook</span>
-          </button>
+        
         </div>
       </form>
 
@@ -322,22 +306,8 @@ signupForm.addEventListener("submit", async (e) => {
   }
 });
 
-/* ===============================
-   7️⃣ GOOGLE LOGIN (BOTH BUTTONS)
-================================ */
-document.querySelectorAll(".google").forEach(btn => {
-  btn.addEventListener("click", async () => {
-    try {
-      const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      window.location.href = "profile.html";
-    } catch (err) {
-      alert(err.message);
-    }
-  });
-});
-</script>
-<script>
+
+
 // Force animation on load
 window.addEventListener('load', () => {
   document.querySelector('.login-card').classList.add('animate-in');

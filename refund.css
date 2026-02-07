@@ -564,3 +564,28 @@ body {
   text-decoration: underline;
   color: var(--accent-gold); /* or any accent color you use */
 }
+@media (max-width: 768px) {}
+  
+  /* NAVBAR */
+  .nav-container {
+    padding: 0 16px;
+    height: 60px;
+  }
+  
+  .logo-img {
+    height: 140px;
+  }
+  
+  .nav-icons {
+    gap: 20px;
+  }
+  
+  .nav-icon {
+    font-size: 18px;
+  }
+  
+  .cart-badge {
+    font-size: 9px;
+    width: 16px;
+    height: 16px;
+  }

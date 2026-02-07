@@ -20,7 +20,7 @@
     </div>
     
     <div class="nav-icons">
-      <a href="login.html" class="nav-icon" aria-label="Profile">
+      <a href="profile.html" class="nav-icon" aria-label="Profile">
         <i class="fa-solid fa-user"></i>
       </a>
       <a href="cart.html" class="nav-icon cart-icon" aria-label="Cart">
@@ -396,17 +396,34 @@ function openProduct(productId) {
 // Update cart badge with real count from database
 async function updateCartBadge() {
   try {
-    const response = await fetch('https://coreth-backend.onrender.com/api/cart');
-    const cartItems = await response.json();
+    // Import Firebase
+    const { getAuth, onAuthStateChanged } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js");
+    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js");
     
-    // Calculate total quantity
-    const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+    const firebaseConfig = {
+      apiKey: "AIzaSyArU3nEb82JEI0wJceR73xUHxVtMJtVHOI",
+      authDomain: "coreth-clothing-c2ced.firebaseapp.com",
+      projectId: "coreth-clothing-c2ced",
+      storageBucket: "coreth-clothing-c2ced.appspot.com",
+      messagingSenderId: "601694130714",
+      appId: "1:601694130714:web:303d9325da7e07803177a3"
+    };
     
-    // Update badge
-    const badge = document.querySelector('.cart-badge');
-    if (badge) {
-      badge.textContent = totalItems;
-    }
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        document.querySelector('.cart-badge').textContent = '0';
+        return;
+      }
+      
+      const response = await fetch(`https://coreth-backend.onrender.com/api/cart?userId=${user.uid}`);
+      const cartItems = await response.json();
+      const totalItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+      
+      document.querySelector('.cart-badge').textContent = totalItems;
+    });
   } catch (error) {
     console.error('Error updating cart badge:', error);
   }

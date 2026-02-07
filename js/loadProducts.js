@@ -31,10 +31,8 @@ async function loadProducts() {
           <div class="product-info">
             <h3 class="product-name">${product.name}</h3>
             <p class="product-price">₹${product.price}</p>
-            <button class="add-to-cart-btn" onclick="addToCart('${product._id}')">
-              <i class="fa-solid fa-bag-shopping"></i>
-              <span>Add to Cart</span>
-            </button>
+            
+              
           </div>
         </div>
       `;
