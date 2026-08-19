@@ -15,7 +15,6 @@ async function loadProducts() {
     grid.innerHTML = '';
 
     products.forEach(product => {
-      // 🔥 Use imagePosition class directly from MongoDB
       const positionClass = product.imagePosition || 'img-center';
 
       const productCard = `
