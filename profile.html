@@ -172,10 +172,10 @@ async function logout() {
   if (confirm('Are you sure you want to log out?')) {
     try {
       await window.firebaseSignOut();
-      localStorage.clear(); // ✅ Clear ALL localStorage
-      sessionStorage.clear(); // ✅ Clear sessionStorage too
+      localStorage.clear(); //  Clear ALL localStorage
+      sessionStorage.clear(); // Clear sessionStorage too
       
-      // ✅ Clear Firebase cache
+      // Clear Firebase cache
       if (window.indexedDB) {
         indexedDB.deleteDatabase('firebaseLocalStorageDb');
       }
@@ -244,7 +244,7 @@ window.addEventListener('load', () => {
   const userName = localStorage.getItem('userName') || user.displayName || 'User';
   document.getElementById('name').value = userName;
   
-  // ✅ Update cart badge
+  //  Update cart badge
   try {
     const response = await fetch(`https://coreth-backend.onrender.com/api/cart?userId=${user.uid}`);
     const cartItems = await response.json();
